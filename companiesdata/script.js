@@ -3,7 +3,7 @@ let newCompany = document.querySelector('.createcompany');
 let website = {
     Administrator : 'ahmedreyyan',
     password  : 'ahmedreyyan11',
-    companies : [{},{},{}]
+    companies : [{companyName:''},{},{}]
 }
 
 
@@ -15,6 +15,8 @@ newCompany.addEventListener('click',()=>{
 
    
 })
+
+
 
 function newfunction(){
 let elem = new Object();
