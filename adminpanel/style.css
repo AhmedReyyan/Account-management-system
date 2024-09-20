@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: burlywood;
+}
+
+.container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.createcompany{
+    position: absolute;
+    right: 0;
+    width: 120px;
+    float: right;
+    margin: 30px;
+    padding: 10px;
+    border-radius: 0px 0px 40px 40px ;
+box-shadow: 1px 8px 18px 3px black;
+transition: 0.7s;
+
+&:focus{
+    box-shadow: 2px 4px 10px black;
+}
+
+}
+
+.companiesselect{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%,0%);
+    width: 90%;
+    height: 100vh;
+    background: beige;
+}
+
