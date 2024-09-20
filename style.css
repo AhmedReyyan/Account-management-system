@@ -1,0 +1,122 @@
+*{
+    margin: 0;
+     border: 0;
+}
+
+
+body{
+    width: 100%;
+    height: 100vh;
+    background-color: gray;
+}
+button{
+    cursor: pointer;
+}
+
+#selectrolebtn{
+    width: 100px;
+    height: 40px;
+    border-radius: 15px;
+    position:absolute;
+    right: 20%;
+    top: 8%;
+    z-index: 1;
+}
+
+.loginmain{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 30px;
+    height: 400px;
+    width: 400px;
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+overflow: hidden;
+z-index: 1;
+}
+
+.logininputs{
+    padding-top: 30px;
+    height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    z-index: 1;
+}
+.field{
+    width: 100%;
+    height: 80px;
+}
+.input{
+    width: 95%;
+    height: 50px;
+}
+
+
+
+.loginbtn{
+    position: absolute;
+     bottom: 10%;
+     left: 50%;
+     width: 80px;
+     height: 50px;
+     font-size: 15px;
+     border-radius:10px;
+     transform: translate(-50%,-50%);
+     cursor: pointer;
+}
+
+.pagediv{
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    background:rgba(0, 128, 0, 0.123);
+    z-index: 10;
+}
+
+.selectiondiv{
+    position: absolute;
+    right: 20%;
+    top:15%;
+    width: 300px;
+    height: 200px;
+    background: brown;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.selectionbtn{
+    width: max-content;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.companyroleselect{
+     width: 90%;
+     height: 50px;
+     transform: translate(-50%,-50%);
+     left: 50%;
+     display: flex;
+     position: absolute;
+     background-color: rgba(0, 255, 255, 0.281);
+     bottom: 1%;
+     display: flex;
+     justify-content: space-around;
+     padding: 3px;
+}
+
+.companyrolebtn{
+    width: 40%;
+    cursor: pointer;
+    border-radius: 20px;
+
+
+}

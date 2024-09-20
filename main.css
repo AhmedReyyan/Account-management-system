@@ -1,0 +1,146 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100%;
+    height: 100%;
+    background: cadetblue;
+}
+button{
+    cursor: pointer;
+}
+
+.companydata{
+    width: 100%;
+    min-height: 100vh;
+   background-color: cadetblue;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.userdetails{
+    position: absolute;
+    top: 10%;
+    width: 90%;
+    height: 50%;
+    /* background: gray; */
+    overflow: hidden;
+}
+
+#addemployee{
+    float: right;
+    width: 70px;
+    height: 40px;
+    margin: 5px;
+    border-radius: 8px;
+}
+
+.usercolheading{
+    width: 100%;
+    height: 25px;
+    /* background: red; */
+    display: flex;
+}
+
+.colheading{
+   width: 18%;
+    background: beige;
+    border: 0.5px solid black;
+}
+
+.financedetails{
+    position: absolute;
+    top: 68%;
+    height: 40%;
+    width: 90%;
+    background-color: gray;
+}
+
+.userdatarow{
+    width: 100%;
+    height: 28px;
+    display: flex;
+   
+}
+
+.userdatabox{
+    width: 18%;
+    height: 25px;
+    resize: none;
+    border: 0.5px solid black;
+
+}
+
+.changebtn{
+    width: 40%;
+    margin-left: 8px;
+    margin-top: 2px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.del{
+    margin-left: 5px;
+    width: 35px;
+    border-radius: 50%;
+}
+
+.coverdiv{
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.458);
+   
+
+.gettingnewuser{
+    position: relative;
+    width: 500px;
+    height: 500px;
+    padding: 20px;
+    background: beige;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;gap: 10px;
+    
+
+        
+    }
+    h4{
+        margin-top: 20px;
+    }
+
+    .newinput{
+        width: 80%;
+        padding-bottom:15px ;
+        font-size: x-large;
+    }
+
+    .newsave{
+        width: 80px;
+        height: 50px;
+        margin-top: 30px;
+        border-radius: 10px;
+    }
+
+    .newcancel{
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 30px;
+        height: 40px;
+        background: transparent;
+        border: none;
+        margin: 3px;
+        outline: none;
+    }
+
+
+}
+    
