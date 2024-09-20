@@ -14,7 +14,7 @@ let adminUserPassword = 'ahmedreyyan11'
 loginbtn.addEventListener('click',()=>{
     
     if (userNameInput.value == adminUserName && userNamePassword.value== adminUserPassword) {
-        window.location.href = '/main.html'
+        window.location.href = './main/main.html'
     }else{
         alert('wrong Admin id or password')
     }
