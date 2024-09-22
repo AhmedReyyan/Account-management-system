@@ -12,7 +12,9 @@ let userinputs  = document.querySelectorAll('input');
 
 let adminUserName = 'ahmedreyyan'
 let adminUserPassword = 'ahmedreyyan11'
-let person = 'User'
+let person = 'User';
+let storeuser = localStorage.setItem('userprofile',JSON.stringify(person) ) 
+
 let login_role_state = null;
 
 
@@ -62,6 +64,9 @@ loginHeading.innerHTML = item.innerHTML
                 }else if (login_role_state== 'Admin') {
                     document.body.removeChild(divpage)
                     usernameheading.innerHTML = 'Administrator Id';
+                    person = 'Admin';
+                    storeuser = localStorage.setItem('userprofile',JSON.stringify(person) ) 
+
                 }
                 
 
@@ -69,7 +74,10 @@ loginHeading.innerHTML = item.innerHTML
             if (login_role_state== "Admin" && item.innerHTML=="Company") {
 
                 login_role_state= 'Company'
-                usernameheading.innerHTML = "User Name"
+                usernameheading.innerHTML = "User Name";
+                person = 'User';
+                storeuser = localStorage.setItem('userprofile',JSON.stringify(person) ) 
+
                 Companylogin()
                 document.body.removeChild(divpage)
 
@@ -77,11 +85,15 @@ loginHeading.innerHTML = item.innerHTML
             if (login_role_state== "Company" && item.innerHTML=='Admin') {
                 login_role_state = 'Admin'
                 usernameheading.innerHTML = "Administrator Id"
+                person = 'Admin';
+                storeuser = localStorage.setItem('userprofile',JSON.stringify(person) ) 
+
                 logininputsdiv.removeChild(logininputsdiv.querySelector('.companyfield'))
                 loginmain.removeChild(loginmain.querySelector('.companyroleselect'))
                 document.body.removeChild(divpage)
 
             }else if(login_role_state=='Company' && item.innerHTML == 'Company'){
+
                       document.body.removeChild(divpage)
             }else if(login_role_state=='Admin' && item.innerHTML == 'Admin'){
                 document.body.removeChild(divpage)
@@ -127,13 +139,16 @@ companyBtnDiv.appendChild(companyuser)
 let companyRoleBtns = document.querySelectorAll('.companyrolebtn');
 companyRoleBtns.forEach(btn=>{
     btn.addEventListener('click',()=>{
-    console.log("hello");
     if (btn.innerHTML == 'Company Admin') {
         usernameheading.innerHTML = "Admin Id";
         person = 'Admin'
+        storeuser = localStorage.setItem('userprofile',JSON.stringify(person) ) 
+
     }else{
         usernameheading.innerHTML = "User Name";
         person = 'User'
+        storeuser = localStorage.setItem('userprofile',JSON.stringify(person) ) 
+
     }
     
 }) 
@@ -173,7 +188,6 @@ function companyId(){
 
 
 let getdata = JSON.parse(localStorage.getItem('website'));
-console.log(getdata);
 
 loginbtn.addEventListener('click',()=>{
     
@@ -199,13 +213,11 @@ loginbtn.addEventListener('click',()=>{
                     getdata.companies.forEach(item =>{
 
                         if(Number(usercom.value) == item.companyid){
-                           console.log(item);
                            item.users.forEach((user)=>{
-                            console.log(user);
                             if(userNameInput.value == user.name){
-                                console.log('userfond');
                                 if(userNamePassword.value == String(user.id)){
                                     let storecompanyid = localStorage.setItem('companyid',JSON.stringify(item.companyid))
+                                    // let storeuser = localStorage.setItem('userprofile',JSON.stringify(person) ) 
                                     window.location.href = './main/main.html'
                                 }
                                 
@@ -218,6 +230,19 @@ loginbtn.addEventListener('click',()=>{
 
 
              }else if(person == 'Admin'){
+
+                getdata.companies.forEach(item =>{
+
+                    if(Number(usercom.value) == item.companyid){
+                        if(userNameInput.value== item.adminname && userNamePassword.value == String(item.adminid)){
+                            let storecompanyid = localStorage.setItem('companyid',JSON.stringify(item.companyid))
+                            //  storeuser = localStorage.setItem('userprofile',JSON.stringify(person) ) 
+                            window.location.href = './main/main.html'
+                        }
+                        
+                    }
+         })
+
 
              }
     }

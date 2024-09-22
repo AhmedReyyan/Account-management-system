@@ -1,14 +1,21 @@
 
 
-
+let identity = document.querySelector('.identity')
 let companyname = document.getElementById('companyname')
 let addemployee = document.querySelector('#addemployee');
 let userdata = document.querySelector('.userdetails');
 
+let getuserprofile = JSON.parse(localStorage.getItem('userprofile'));
+console.log(getuserprofile);
+
+identity.innerHTML += getuserprofile
+
 addemployee.addEventListener('click',()=>{
-    console.log('click');
+  if(getuserprofile !== 'User'){
+        addingnewuser();
+  }else{alert('you are not authorized')}
     
-    addingnewuser();
+   
 
 })
 
@@ -120,17 +127,23 @@ changesbtns.appendChild(savebtn)
 userdatarow.appendChild(delbtn)
 
 editbtn.addEventListener('click',()=>{
-    userdataboxname.readOnly = false;
+  if(getuserprofile !=='User'){
+     userdataboxname.readOnly = false;
     userdataboxid.readOnly = false;
     userdataboxstatus.readOnly = false;
     userdataboxsalary.readOnly = false;
+  }else{alert('you are not authorized')}
+   
 })
 
 savebtn.addEventListener('click',()=>{
+  if (getuserprofile !== 'User') {
     userdataboxname.readOnly = permission;
     userdataboxid.readOnly = permission;
     userdataboxstatus.readOnly = permission;
     userdataboxsalary.readOnly = permission;
+  }else{alert('you are not authorized')}
+    
 })
 
 
@@ -141,6 +154,8 @@ savebtn.addEventListener('click',()=>{
 
 document.addEventListener("click",()=>{
   let findinguser  = userdata.querySelectorAll('.userdatarow')
+if(getuserprofile !== 'User'){
+
 
 findinguser.forEach(item => {
    let remove =  item.querySelector('.del');
@@ -148,7 +163,7 @@ findinguser.forEach(item => {
     userdata.removeChild(item)
    })
     
-});
+});}else{alert('you are not authorized')}
 })
 
 

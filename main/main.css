@@ -20,6 +20,16 @@ button{
    align-items: center;
 }
 
+.identity{
+    position: absolute;
+    left: 5%;
+    top: 6%;
+}
+.usertableheading{
+    position: absolute;
+    top: 8%;
+}
+
 .userdetails{
     position: absolute;
     top: 10%;
