@@ -32,7 +32,7 @@ let website = {
         ]}
     ]
 }
-let setData  = localStorage.setItem("website",JSON.stringify(website))
+// let setData  = localStorage.setItem("website",JSON.stringify(website))
 
 
 document.onload=(onloadsetup())
@@ -74,7 +74,7 @@ registeration.addEventListener('submit',(e)=>{
 function putcompanydata(companyname,companyid,adminname,adminid){
     console.log('click2');
     
-         setData = localStorage.setItem("website",JSON.stringify(website))
+        //  setData = localStorage.setItem("website",JSON.stringify(website))
     
 
     let companyobj = new Object({'companyname':companyname,'companyid':companyid,'adminname':adminname,'adminid':adminid,users:[]})

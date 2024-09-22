@@ -5,7 +5,13 @@ let companyname = document.getElementById('companyname')
 let addemployee = document.querySelector('#addemployee');
 let userdata = document.querySelector('.userdetails');
 
+// fetching data from local storage
+let getstoredcompanyid = JSON.parse(localStorage.getItem('companyid'))
 let getuserprofile = JSON.parse(localStorage.getItem('userprofile'));
+let getalldata = JSON.parse(localStorage.getItem('website'));//getting data in case to add new data
+
+
+
 console.log(getuserprofile);
 
 identity.innerHTML += getuserprofile
@@ -76,6 +82,7 @@ cancelbtn.addEventListener('click',()=>{
 
 savebtn.addEventListener('click',()=>{
     settingnewuser(nameinput.value,idinput.value,statusinput.value,salaryinput.value)
+    updateLocalStorage(nameinput.value,idinput.value,statusinput.value,salaryinput.value)
     document.body.removeChild(coverdiv)
 })
    
@@ -92,7 +99,7 @@ function  settingnewuser(name , id, status , salary){
     userdataboxname.innerHTML = name
     userdataboxname.readOnly= permission
   let userdataboxid = document.createElement('textarea');
-    userdataboxid.className = 'userdatabox';
+    userdataboxid.className = 'userdatabox userdataboxid';
     userdataboxid.innerHTML = id
     userdataboxid.readOnly = permission
     let userdataboxstatus = document.createElement('textarea');
@@ -125,6 +132,8 @@ userdatarow.appendChild(changesbtns);
 changesbtns.appendChild(editbtn)
 changesbtns.appendChild(savebtn)
 userdatarow.appendChild(delbtn)
+
+
 
 editbtn.addEventListener('click',()=>{
   if(getuserprofile !=='User'){
@@ -159,7 +168,23 @@ if(getuserprofile !== 'User'){
 
 findinguser.forEach(item => {
    let remove =  item.querySelector('.del');
+   let itemid = item.querySelector('.userdataboxid')
    remove.addEventListener('click',()=>{
+
+    getalldata.companies.forEach((company)=>{
+      if(company.companyid == getstoredcompanyid){
+         company.users.forEach((user,index)=>{
+                 if(user.id == itemid.innerHTML){
+                  company.users.splice(index,1)
+                  let storeremoveduserdata = localStorage.setItem('website',JSON.stringify(getalldata))
+                  
+                 }
+                 
+         })
+       
+      }
+    
+    })
     userdata.removeChild(item)
    })
     
@@ -167,7 +192,6 @@ findinguser.forEach(item => {
 })
 
 
-let getstoredcompanyid = JSON.parse(localStorage.getItem('companyid'))
 
 document.onload =(settinguserforcompany(getstoredcompanyid))
 function settinguserforcompany(id){
@@ -184,4 +208,19 @@ function settinguserforcompany(id){
             }
  })
 }
+
+
+function updateLocalStorage(name,id,status,salary){
+  let newuser = new Object({name:name,id:id,status,salary,salary});
+  getalldata.companies.forEach((item,index)=>{
+      if(getstoredcompanyid == item.companyid){
+        item.users.push(newuser)
+        console.log(newuser);
+        let savedata = localStorage.setItem('website',JSON.stringify(getalldata))
+      }
+
+  
+  })
+}
+
 
