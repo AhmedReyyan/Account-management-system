@@ -1,7 +1,7 @@
 
 
 
-
+let companyname = document.getElementById('companyname')
 let addemployee = document.querySelector('#addemployee');
 let userdata = document.querySelector('.userdetails');
 
@@ -14,7 +14,6 @@ addemployee.addEventListener('click',()=>{
 
 
 function addingnewuser(){
-    console.log('click');
     
     let coverdiv = document.createElement('div');
     coverdiv.className = 'coverdiv';
@@ -75,7 +74,7 @@ savebtn.addEventListener('click',()=>{
    
 }
 
-function settingnewuser(name , id, status , salary){
+function  settingnewuser(name , id, status , salary){
 
     let permission = true
     
@@ -136,9 +135,12 @@ savebtn.addEventListener('click',()=>{
 
 
 
+
 }
 
-let findinguser  = userdata.querySelectorAll('.userdatarow')
+
+document.addEventListener("click",()=>{
+  let findinguser  = userdata.querySelectorAll('.userdatarow')
 
 findinguser.forEach(item => {
    let remove =  item.querySelector('.del');
@@ -147,6 +149,24 @@ findinguser.forEach(item => {
    })
     
 });
+})
 
 
+let getstoredcompanyid = JSON.parse(localStorage.getItem('companyid'))
+
+document.onload =(settinguserforcompany(getstoredcompanyid))
+function settinguserforcompany(id){
+  let getusers = JSON.parse(localStorage.getItem('website'))
+  console.log(getusers.companies);
+
+ let sett =  getusers.companies.forEach((company)=>{
+            if(company.companyid==id){
+              companyname.innerHTML = company.companyname
+              company.users.forEach(user=>{
+                settingnewuser(user.name , user.id, user.status , user.salary)
+              })
+              
+            }
+ })
+}
 
