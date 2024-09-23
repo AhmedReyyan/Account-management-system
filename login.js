@@ -212,7 +212,7 @@ loginbtn.addEventListener('click',()=>{
                      
                     getdata.companies.forEach(item =>{
 
-                        if(Number(usercom.value) == item.companyid){
+                        if(usercom.value == String(item.companyid)){
                            item.users.forEach((user)=>{
                             if(userNameInput.value == user.name){
                                 if(userNamePassword.value == String(user.id)){

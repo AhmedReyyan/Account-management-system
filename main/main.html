@@ -45,8 +45,36 @@
            
         </div><!--user data-->
 
+<div class="revenueheading">
+    <h2 class="revenuedetails">Revenue Details<span class="revenue"></span></h2>
+    <h3 class="total">total: <span>30000</span></h3>
+</div>
+       
           <div class="financedetails">
-            <h2>Revenue <span class="revenue"></span></h2>
+           
+
+            <table id="expensetable">
+                <tbody>
+                    <tr class='expensetableheader'>
+                        <td>Amount</td>
+                        <td>Description</td>
+                        <td>Submitted BY</td>
+                        <td>Status</td>
+                    </tr>
+                </tbody>
+            </table>
+            <form class="addExpense">
+                <label for="price">Amount</label>
+                <input type="number" name="price" id="price">
+
+                <label for="reason">Detail</label>
+                <input type="number" name="reason" id="reason">
+                
+                <button type="reset">Reset</button>
+                <button type="submit">Submit</button>
+                
+            </form>
+
           </div>
 
 

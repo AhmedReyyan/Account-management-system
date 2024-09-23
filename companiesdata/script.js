@@ -32,7 +32,11 @@ let website = {
         ]}
     ]
 }
-// let setData  = localStorage.setItem("website",JSON.stringify(website))
+
+if (JSON.parse(localStorage.getItem('website')) == null) {
+    let setData  = localStorage.setItem("website",JSON.stringify(website))
+
+}
 
 
 document.onload=(onloadsetup())
@@ -63,6 +67,7 @@ registeration.addEventListener('submit',(e)=>{
    console.log('click');
    
     putcompanydata(newCompanyName.value,newCompanyid.value,newAdminName.value,newAdminId.value)
+    storenewcompany(newCompanyName.value,newCompanyid.value,newAdminName.value,newAdminId.value)
         registeration.reset()
         registeration.style.display = 'none'
 })
@@ -80,7 +85,7 @@ function putcompanydata(companyname,companyid,adminname,adminid){
     let companyobj = new Object({'companyname':companyname,'companyid':companyid,'adminname':adminname,'adminid':adminid,users:[]})
       let getdata  = JSON.parse(localStorage.getItem('website'));
 
-      console.log(getdata.companies);
+    //   console.log(getdata.companies);
       console.log(website.companies.length)
 
       let addingdata = getdata.companies.push(companyobj)
@@ -88,7 +93,7 @@ function putcompanydata(companyname,companyid,adminname,adminid){
         console.log(addingdata);
         console.log(getdata);
         
-      setData = localStorage.setItem("website",JSON.stringify(getdata))
+     let setData = localStorage.setItem("website",JSON.stringify(getdata))
       createrowforcompanydata(companyname,companyid,adminname,adminid,companyobj.users.length)
 }
 
@@ -140,6 +145,8 @@ getcomid.forEach(item=>{
 })
 
 
+function storenewcompany(name,id ,adminname,adminid){
 
+}
 
 
