@@ -47,31 +47,59 @@
 
 <div class="revenueheading">
     <h2 class="revenuedetails">Revenue Details<span class="revenue"></span></h2>
-    <h3 class="total">total: <span>30000</span></h3>
+    <h3 class="total">total: <span id="totalexpenses">30000</span></h3>
+    <button id="addexpensebtn">Add Expense</button>
 </div>
        
           <div class="financedetails">
            
-
+            <div class='expensetableheader'>
+                <span>Amount</span>
+                <span>Description</span>
+                <span>Submitted By</span>
+                <span>Status</span>
+            </div>
             <table id="expensetable">
                 <tbody>
-                    <tr class='expensetableheader'>
+
+                    
+
+                    <tr>
                         <td>Amount</td>
                         <td>Description</td>
-                        <td>Submitted BY</td>
+                        <td>Submiddded BY</td>
                         <td>Status</td>
                     </tr>
+                    
+                  
+                    
+                    
+
+
+
+
                 </tbody>
             </table>
-            <form class="addExpense">
+            <form class="addexpense">
+                <h4>Add Expense</h4>
                 <label for="price">Amount</label>
-                <input type="number" name="price" id="price">
+                <input type="number" name="price" id="price" required>
 
-                <label for="reason">Detail</label>
-                <input type="number" name="reason" id="reason">
+                <label for="reason">For</label>
+                <select  name="reason" id="reason">
+                    <option value="office">Office</option>
+                    <option value="project">Project</option>
+                    <option value="medical">Medical</option>
+                    <option value="client">Client</option>
+                    <option value="event">Event</option>
+                    <option class="otherreason" value="other">Others</option>
+                </select>
+
+                <label class="otherdes" for="otherdes">Description</label>
+                <input type="text" name="otherdes" id="otherdes" class="otherdes" required disabled>
                 
-                <button type="reset">Reset</button>
-                <button type="submit">Submit</button>
+                <button class="resetexpenses" type="reset">Cancel</button>
+                <button class="submitexpenses" type="submit">Submit</button>
                 
             </form>
 

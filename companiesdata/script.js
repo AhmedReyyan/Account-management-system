@@ -22,14 +22,18 @@ let website = {
             {name:'f.nick',id:102,status:'project manager',salary:40000},
             {name:'f.saad',id:103,status:'employee',salary:30000},
             {name:'f.john',id:104,status:'intern',salary:20000}
-        ]},
+        ],
+        expenses:[{amount:1234,reason:'office',username:"afzal",status:'pending'}]
+    },
         {companyname:'facebook',companyid:5566,adminname:'amjad',adminid:1137,users:[
             {name:'dildar',id:100,status:'employee',salary:50000},
             {name:'michael',id:101,status:'HR',salary:60000},
             {name:'ahmed',id:102,status:'project manager',salary:40000},
             {name:'reyyan',id:103,status:'employee',salary:30000},
             {name:'rehman',id:104,status:'intern',salary:20000}
-        ]}
+        ],
+        expenses:[{amount:1234,reason:'office',username:"afzal",status:'pending'}]
+    }
     ]
 }
 
@@ -82,7 +86,7 @@ function putcompanydata(companyname,companyid,adminname,adminid){
         //  setData = localStorage.setItem("website",JSON.stringify(website))
     
 
-    let companyobj = new Object({'companyname':companyname,'companyid':companyid,'adminname':adminname,'adminid':adminid,users:[]})
+    let companyobj = new Object({'companyname':companyname,'companyid':companyid,'adminname':adminname,'adminid':adminid,users:[],expenses:[]})
       let getdata  = JSON.parse(localStorage.getItem('website'));
 
     //   console.log(getdata.companies);

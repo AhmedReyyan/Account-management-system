@@ -4,13 +4,22 @@ let identity = document.querySelector('.identity')
 let companyname = document.getElementById('companyname')
 let addemployee = document.querySelector('#addemployee');
 let userdata = document.querySelector('.userdetails');
+let addexpensebtn = document.getElementById('addexpensebtn');
+let expenseTable = document.querySelector('#expensetable')
+let otherreason = document.querySelector('#reason')
+let totalexpense = document.querySelector('.totalexpenses')
+// let otherdesitems = document.querySelectorAll('otherdes')
+let otherdes = document.querySelector('#otherdes')
 
 // fetching data from local storage
 let getstoredcompanyid = JSON.parse(localStorage.getItem('companyid'))
 let getuserprofile = JSON.parse(localStorage.getItem('userprofile'));
 let getalldata = JSON.parse(localStorage.getItem('website'));//getting data in case to add new data
+let getusername = JSON.parse(localStorage.getItem('username'))
 
 
+
+let expenseFileStatus = 'pending'
 
 console.log(getuserprofile);
 
@@ -161,34 +170,37 @@ savebtn.addEventListener('click',()=>{
 }
 
 
-document.addEventListener("click",()=>{
+document.addEventListener("DOMContentLoaded",()=>{
   let findinguser  = userdata.querySelectorAll('.userdatarow')
-if(getuserprofile !== 'User'){
+
 
 
 findinguser.forEach(item => {
    let remove =  item.querySelector('.del');
    let itemid = item.querySelector('.userdataboxid')
    remove.addEventListener('click',()=>{
+         if(getuserprofile !== 'User'){
+          getalldata.companies.forEach((company)=>{
+            if(company.companyid == getstoredcompanyid){
+               company.users.forEach((user,index)=>{
+                       if(user.id == itemid.innerHTML){
+                        company.users.splice(index,1)
+                        let storeremoveduserdata = localStorage.setItem('website',JSON.stringify(getalldata))
+                        
+                       }
+                       
+               })
+             
+            }
+          
+          })
+          userdata.removeChild(item)
 
-    getalldata.companies.forEach((company)=>{
-      if(company.companyid == getstoredcompanyid){
-         company.users.forEach((user,index)=>{
-                 if(user.id == itemid.innerHTML){
-                  company.users.splice(index,1)
-                  let storeremoveduserdata = localStorage.setItem('website',JSON.stringify(getalldata))
-                  
-                 }
-                 
-         })
-       
-      }
-    
-    })
-    userdata.removeChild(item)
+         }else{alert('You Are NOt Authorized')}
+  
    })
     
-});}else{alert('you are not authorized')}
+});
 })
 
 
@@ -223,4 +235,114 @@ function updateLocalStorage(name,id,status,salary){
   })
 }
 
+addexpensebtn.addEventListener('click',()=>{
+    //   let price = document.getElementById('price');
+      
+     let form =  document.querySelector('.addexpense');
 
+     form.style.display = 'flex';
+     let resetExpenses =  document.querySelector('.resetexpenses')
+     resetExpenses.addEventListener('click',()=>{
+      form.style.display = 'none'
+      })
+})
+
+
+function addExpenseTableRow(amount,description,submission,status){
+  console.log('called');
+  
+  let row = document.createElement('tr');
+  let amounttd = document.createElement('td');
+  amounttd.innerHTML = amount
+  let desciptiontd = document.createElement('td');
+  desciptiontd.innerHTML = description
+  let submittedtd = document.createElement('td');
+  submittedtd.innerHTML = submission
+  let statustd = document.createElement('td');
+  statustd.innerHTML = status
+
+  row.appendChild(amounttd)
+  row.appendChild(desciptiontd)
+  row.appendChild(submittedtd)
+  row.appendChild(statustd)
+expenseTable.appendChild(row)
+
+
+}
+
+let form =  document.querySelector('.addexpense');
+  form.addEventListener('submit',(e)=>{
+    e.preventDefault()
+      let price = document.getElementById('price')
+        addExpenseTableRow(price.value,reason.value,`${getuserprofile}:${getusername}`,expenseFileStatus)
+        storeExpenseRow(price.value,reason.value,`${getuserprofile}:${getusername}`,expenseFileStatus)
+        form.reset();
+        form.style.display = 'none'
+  })
+
+
+//  otherreason.addEventListener('click',()=>{
+      
+    //   // if(otherreason.value == "other"){
+    //   //   console.log('val');
+        
+    //   //      otherdesitems.forEach((item)=>{
+    //   //       console.log('');
+    //   //       otherdes.disabled = false
+    //   //          otherdes.style.display = 'none'
+    //   //          otherdes.innerHTML = 'enter reason'
+    //   //            item.style.display = 'flex'
+    //   //      })
+    //   // }
+        
+    //  })
+     
+
+    
+    //  form.addEventListener('submit',(e)=>{
+      
+    //   e.preventDefault();
+    //   addExpenseTableRow(price.value,otherreason.value,getuserprofile,expenseFileStatus)
+    //   form.style.display = 'none';
+
+    //   // form.reset()
+      
+    //  })
+
+
+    function storeExpenseRow(amount,reason,username,status){
+  
+      let expenserow = new Object({amount:amount,reason:reason,username:username,status:status})
+      getalldata.companies.forEach((company)=>{
+       
+
+           if(String(company.companyid) == getstoredcompanyid){
+             console.log('object pushed');
+            company.expenses.push(expenserow)
+           }
+      })
+      
+      let setexpensesdata = localStorage.setItem('website',JSON.stringify(getalldata))
+    }
+
+
+    document.onload=(loadingstoredExpenses())
+
+
+    function loadingstoredExpenses(){
+     
+        console.log('aaaa');
+        
+        getalldata.companies.forEach((company)=>{
+          if(String(company.companyid)== getstoredcompanyid){
+            console.log(company.expenses)
+            company.expenses.forEach((item)=>{
+              addExpenseTableRow(item.amount,item.reason,item.username,item.status)
+            })
+          }
+        })
+
+      }
+    
+
+      

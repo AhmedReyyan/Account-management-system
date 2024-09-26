@@ -190,6 +190,7 @@ function companyId(){
 let getdata = JSON.parse(localStorage.getItem('website'));
 
 loginbtn.addEventListener('click',()=>{
+    let storeuser = localStorage.setItem('username',JSON.stringify(userNameInput.value) ) 
     
     userinputs.forEach(input=>{
         if (input.value == '') {
@@ -199,6 +200,8 @@ loginbtn.addEventListener('click',()=>{
 
     if (login_role_state == 'Admin') {
         if(userNameInput.value == adminUserName && userNamePassword.value== adminUserPassword) {
+                                              
+
             window.location.href = './adminpanel/AdminPanel.html'
         }else{
             alert('wrong Admin id or password')
@@ -213,11 +216,15 @@ loginbtn.addEventListener('click',()=>{
                     getdata.companies.forEach(item =>{
 
                         if(usercom.value == String(item.companyid)){
+
                            item.users.forEach((user)=>{
+
                             if(userNameInput.value == user.name){
+                                  let storeuser = localStorage.setItem('username',JSON.stringify(userNameInput.value) ) 
                                 if(userNamePassword.value == String(user.id)){
                                     let storecompanyid = localStorage.setItem('companyid',JSON.stringify(item.companyid))
-                                    // let storeuser = localStorage.setItem('userprofile',JSON.stringify(person) ) 
+                                    
+
                                     window.location.href = './main/main.html'
                                 }
                                 
@@ -234,7 +241,11 @@ loginbtn.addEventListener('click',()=>{
                 getdata.companies.forEach(item =>{
 
                     if(Number(usercom.value) == item.companyid){
+                        // let storeuser = localStorage.setItem('username',JSON.stringify(user.name) ) 
+
                         if(userNameInput.value== item.adminname && userNamePassword.value == String(item.adminid)){
+                            let storeuser = localStorage.setItem('username',JSON.stringify(userNameInput.value) ) 
+
                             let storecompanyid = localStorage.setItem('companyid',JSON.stringify(item.companyid))
                             //  storeuser = localStorage.setItem('userprofile',JSON.stringify(person) ) 
                             window.location.href = './main/main.html'
