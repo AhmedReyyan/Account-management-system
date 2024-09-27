@@ -1,6 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+
+
 *{
     margin: 0;
     padding: 0;
+    font-family: "Fredoka", sans-serif;
+
 }
 body{
     width: 100%;
@@ -211,6 +216,20 @@ td{
     width: 25%;
     /* background-color: antiquewhite; */
 }
+
+.approvalbtn{
+    height: 100%;
+    float:right;
+    padding: 3px;
+    /* background-color: green; */
+    background: radial-gradient(circle ,rgba(255, 255, 255, 0.741) 10%,rgba(0, 128, 0, 0.599));
+}
+.cancelapproval{
+    float: right;
+    margin-right: 4px;
+    height: 100%;
+    padding: 3px;
+    background: radial-gradient(circle, white 10%,rgba(255, 0, 0, 0.573));}
 
 .addexpense{
     position: absolute;

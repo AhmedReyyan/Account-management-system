@@ -17,9 +17,10 @@ let getuserprofile = JSON.parse(localStorage.getItem('userprofile'));
 let getalldata = JSON.parse(localStorage.getItem('website'));//getting data in case to add new data
 let getusername = JSON.parse(localStorage.getItem('username'))
 
-
-
-let expenseFileStatus = 'pending'
+ let expenseFileStatus = 'pending'
+if (getuserprofile == "Admin") {
+     expenseFileStatus = 'Approved'
+}
 
 console.log(getuserprofile);
 
@@ -260,7 +261,17 @@ function addExpenseTableRow(amount,description,submission,status){
   submittedtd.innerHTML = submission
   let statustd = document.createElement('td');
   statustd.innerHTML = status
+  let approvebtn = document.createElement('button')
+  approvebtn.className = 'approvalbtn';
+  approvebtn.innerHTML = 'Approve';
+  let cancelapprove = document.createElement('button');
+  cancelapprove.className = 'cancelapproval';
+  cancelapprove.innerHTML = 'Cancel';
+  
+    statustd.appendChild(approvebtn)
+  
 
+statustd.appendChild(cancelapprove)
   row.appendChild(amounttd)
   row.appendChild(desciptiontd)
   row.appendChild(submittedtd)
@@ -269,6 +280,20 @@ expenseTable.appendChild(row)
 
 
 }
+
+
+document.addEventListener('DOMContentLoaded',()=>{
+  if (getuserprofile == 'User') {
+    let cancelbtns = document.querySelectorAll('.cancelapproval');
+    cancelbtns.forEach((btn)=>{
+      btn.style.display = 'none'
+    })
+    let approvalbtns = document.querySelectorAll('.approvalbtn');
+    approvalbtns.forEach((btn)=>{
+      btn.style.display = 'none'
+    })
+  }
+})
 
 let form =  document.querySelector('.addexpense');
   form.addEventListener('submit',(e)=>{
@@ -343,6 +368,22 @@ let form =  document.querySelector('.addexpense');
         })
 
       }
-    
 
+
+      document.addEventListener('DOMContentLoaded',()=>{
+        let allrows = document.querySelectorAll('tr');
+        allrows.forEach(tr=>{
+          console.log(tr);
+          
+        })
+      })
+    
+// let getDataForExpenseRows = JSON.parse(localStorage.getItem('website'));
+// getDataForExpenseRows.companies.forEach((company)=>{
+//     console.log(company);
+//     company.expenses.forEach(item=>{
+//       item.status
+//     })
+    
+// })
       
