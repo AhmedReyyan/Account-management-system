@@ -81,7 +81,6 @@ registeration.addEventListener('submit',(e)=>{
 
 
 function putcompanydata(companyname,companyid,adminname,adminid){
-    console.log('click2');
     
         //  setData = localStorage.setItem("website",JSON.stringify(website))
     
@@ -92,11 +91,7 @@ function putcompanydata(companyname,companyid,adminname,adminid){
     //   console.log(getdata.companies);
       console.log(website.companies.length)
 
-      let addingdata = getdata.companies.push(companyobj)
-      
-        console.log(addingdata);
-        console.log(getdata);
-        
+      let addingdata = getdata.companies.push(companyobj);
      let setData = localStorage.setItem("website",JSON.stringify(getdata))
       createrowforcompanydata(companyname,companyid,adminname,adminid,companyobj.users.length)
 }

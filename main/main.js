@@ -250,7 +250,6 @@ addexpensebtn.addEventListener('click',()=>{
 
 
 function addExpenseTableRow(amount,description,submission,status){
-  console.log('called');
   
   let row = document.createElement('tr');
   let amounttd = document.createElement('td');
@@ -260,8 +259,13 @@ function addExpenseTableRow(amount,description,submission,status){
   let submittedtd = document.createElement('td');
   submittedtd.innerHTML = submission
   let statustd = document.createElement('td');
-  statustd.innerHTML = status
-  let approvebtn = document.createElement('button')
+  statustd.className = 'expensestatus'
+  // statustd.innerHTML = status;
+  let statusSpan = document.createElement('span');
+  statusSpan.className = 'statusspan';
+  statusSpan.innerHTML = status
+  if (getuserprofile !== "User") {
+    let approvebtn = document.createElement('button')
   approvebtn.className = 'approvalbtn';
   approvebtn.innerHTML = 'Approve';
   let cancelapprove = document.createElement('button');
@@ -269,9 +273,9 @@ function addExpenseTableRow(amount,description,submission,status){
   cancelapprove.innerHTML = 'Cancel';
   
     statustd.appendChild(approvebtn)
-  
-
 statustd.appendChild(cancelapprove)
+  }
+  statustd.appendChild(statusSpan)
   row.appendChild(amounttd)
   row.appendChild(desciptiontd)
   row.appendChild(submittedtd)
@@ -370,20 +374,55 @@ let form =  document.querySelector('.addexpense');
       }
 
 
-      document.addEventListener('DOMContentLoaded',()=>{
-        let allrows = document.querySelectorAll('tr');
-        allrows.forEach(tr=>{
-          console.log(tr);
-          
-        })
+function storingexpenserowstatus(input,itemindex){
+  let getlocalstorageforexpense = JSON.parse(localStorage.getItem('website'));
+getlocalstorageforexpense.companies.forEach(company=>{
+     if(getstoredcompanyid == String(company.companyid)){
+      company.expenses.forEach((expenserow,index)=>{
+           if (itemindex == index) {
+            expenserow.status = input
+        console.log(index,expenserow);
+           }
       })
-    
-// let getDataForExpenseRows = JSON.parse(localStorage.getItem('website'));
-// getDataForExpenseRows.companies.forEach((company)=>{
-//     console.log(company);
-//     company.expenses.forEach(item=>{
-//       item.status
-//     })
-    
-// })
+     }
+})
+let updatingExpenseRowStatus = localStorage.setItem('website',JSON.stringify(getlocalstorageforexpense))
+
+}
+
+
+
+
+      let allstatusdivs = document.querySelectorAll('.expensestatus');
+      allstatusdivs.forEach((item,index)=>{
+            
+        let approvebtn = item.querySelector('.approvalbtn');
+        let cancelbtn = item.querySelector('.cancelapproval');
+        let status = item.querySelector('.statusspan');
+        
+        approvebtn.addEventListener('click',()=>{
+              if (status.innerHTML == 'pending' || status.innerHTML == 'Canceled') {
+                status.innerHTML = 'Approved';
+                storingexpenserowstatus('Approved',index)
+                
+              }else{
+                alert('Already appreved by admin')
+              }
+
+        })
       
+
+        cancelbtn.addEventListener('click',()=>{
+          if(status.innerHTML== 'Approved' || status.innerHTML == "pending"){
+            status.innerHTML = 'Canceled';
+            storingexpenserowstatus('Canceled',index)
+          }else{
+            alert('canceled by admin')
+          }
+        })
+             
+         
+      })
+
+
+    
